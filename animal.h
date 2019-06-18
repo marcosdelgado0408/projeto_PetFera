@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <string>
-#include "./animal.h"
 #include "./veterinario.h"
+#include "tratador.h"
+
+using namespace std;
 
 class Animal{
 	protected:

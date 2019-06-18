@@ -1,8 +1,10 @@
 #ifndef _sub_animal_h_
 #define _sub_animal_h_
 
+#include <iostream>
 #include <string>
 #include "animal.h"
+
 
 /* Classe que armazenará todas as subclasses de animal.h */
 
@@ -19,6 +21,12 @@ class Anfibio: public Animal{
 	public:
 		Anfibio(int m_total_de_mudas, date m_ultima_muda);
 		~Anfibio();
+
+		void getTotalmudas();
+		int setTotalmudas(int total_mudas);
+
+		void getUltimamuda();
+		date setUltimamuda(date ultima_muda);
 };
 
 class Mamifero: public Animal{
@@ -37,6 +45,9 @@ class Reptil: public Animal{
 	public:
 		Reptil(bool m_venenoso, string m_tipo_veneno);
 		~Reptil();
+
+		void getVenenoso();
+		bool setVenenoso(bool venenoso);
 };
 
 class Ave: public Animal{
@@ -47,6 +58,12 @@ class Ave: public Animal{
 	public:
 		Ave(double m_tamanho_do_bico_cm, double m_envergadura_das_asas);
 		~Ave();
+
+		void setTamanhobico();
+		double getTamanhobico(double tamanho_bico);
+
+		void setEnvergaduraasas();
+		double getEnvergaduraasas(double envergadura_asas);
 };
 
 

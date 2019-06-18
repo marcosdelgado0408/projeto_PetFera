@@ -7,74 +7,64 @@ Funcionario::Funcionario(string m_nome, string m_cpf, short m_idade, string m_ti
 	this->m_cpf = m_cpf;
 	this->m_idade = m_idade;
 	this->m_tipo_sanguineo = m_tipo_sanguineo;
-	this->m_fator_rh = m_fator_rh);
+	this->m_fator_rh = m_fator_rh;
 	this->m_especialidade = m_especialidade;
 }
 
-Funcionario::getNome(){
+string Funcionario::getNome(){
 	return this->m_nome;
 }
 
-Funcionario::setNome(string nome){
+void Funcionario::setNome(string nome){
 	this->m_nome = nome;
 }
 
-Funcionario::getCpf(){
-	return this-m_cpf;
+
+
+string Funcionario::getCpf(){
+	return this->m_cpf;
 }
 
-Funcionario::setCpf(string cpf){
-	this->m_cpf = cpf
+void Funcionario::setCpf(string cpf){
+	this->m_cpf = cpf;
 }
 
-Funcionario::getIdade(){
+
+
+short Funcionario::getIdade(){
 	return this->m_idade;
 }
 
-Funcionario::setIdade(short idade){
+void Funcionario::setIdade(short idade){
 	this->m_idade = idade;
 }
 
-Funcionario::getTipoSanguineo(){
+
+
+string  Funcionario::getTipoSanguineo(){
 	return this->m_tipo_sanguineo;
 }
 
-Funcionario::setTipoSanguineo(string tipo_sanguineo){
+void Funcionario::setTipoSanguineo(string tipo_sanguineo){
 	this->m_tipo_sanguineo = tipo_sanguineo;
 }
 
-Funcionario::getFatorRh(){
+
+
+char Funcionario::getFatorRh(){
 	return this->m_fator_rh;
 }
 
-Funcionario::setFatorRh(char fator_rh){
+void Funcionario::setFatorRh(char fator_rh){
 	this->m_fator_rh = fator_rh;
 }
 
-Funcionario::getEspecialidade(){
+
+
+string Funcionario::getEspecialidade(){
 	return this->m_especialidade;
 }
 
-Funcionario::setEspecialidade(string especialidade){
-	this->m_especial
-idade = especialidade;
+void Funcionario::setEspecialidade(string especialidade){
+	this->m_especialidade = especialidade;
 }		
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
