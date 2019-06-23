@@ -18,6 +18,9 @@ class Funcionario{
 		string m_especialidade;
 
 	public:
+		static int id_atual_funcionario;
+
+		Funcionario();
 		Funcionario(string m_nome, string m_cpf, short m_idade, string m_tipo_sanguineo, char m_fator_rh, string m_especialidade);
 		~Funcionario();
 		
@@ -38,6 +41,6 @@ class Funcionario{
 		
 		string getEspecialidade();
 		void setEspecialidade(string especialidade);
-}
+};
 
 #endif

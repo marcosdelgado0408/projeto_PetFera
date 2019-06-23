@@ -9,6 +9,6 @@ class AnimalSilvestre{
 	public:
 		AnimalSilvestre(string m_autorizacao_ibama);
 		~AnimalSilvestre();
-}
+};
 
 #endif 

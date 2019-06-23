@@ -1,6 +1,6 @@
 #include "funcionario.h"
 
-static int id = 0; /* variável que vai armazenar incrementalmente o id de um funcionário, fazendo com que seja automatizado */
+/*static*/ int Funcionario::id_atual_funcionario = 1; /* variável que vai armazenar incrementalmente o id de um funcionário, fazendo com que seja automatizado */
 
 Funcionario::Funcionario(string m_nome, string m_cpf, short m_idade, string m_tipo_sanguineo, char m_fator_rh, string m_especialidade){
 	this->m_nome = m_nome;

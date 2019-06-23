@@ -7,9 +7,10 @@ class Tratador: public Funcionario{
 	private:
 		int m_nivel_de_seguranca;
 	public:
+		Tratador();
 		Tratador(int m_nivel_de_seguranca);
 		~Tratador();
-}
+};
 
 
 #endif

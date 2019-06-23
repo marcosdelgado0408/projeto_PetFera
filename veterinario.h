@@ -8,8 +8,9 @@ class Veterinario: public Funcionario{
 	private:
 		string m_crm;
 	public:
+		Veterinario();
 		Veterinario(string m_crm);
 		~Veterinario();
-}
+};
 
 #endif

@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "./include.h"
+#include "administrador.h"
 
 
 using namespace std;

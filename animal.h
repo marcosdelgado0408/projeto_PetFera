@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "./veterinario.h"
+#include "veterinario.h"
 #include "tratador.h"
 
 using namespace std;
@@ -22,6 +22,9 @@ class Animal{
         
 
 	public:
+		static int id_atual_animal;
+
+		Animal();
 		Animal(string m_classe, string m_nome_cientifico, char m_sexo, double m_tamanho, string m_dieta, Veterinario m_veterinario, Tratador m_tratador, string m_nome_batismo);
 		~Animal();
 

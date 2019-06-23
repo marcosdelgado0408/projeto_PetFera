@@ -22,11 +22,11 @@ class Anfibio: public Animal{
 		Anfibio(int m_total_de_mudas, date m_ultima_muda);
 		~Anfibio();
 
-		void getTotalmudas();
-		int setTotalmudas(int total_mudas);
+		int getTotalmudas();
+		void setTotalmudas(int total_mudas);
 
-		void getUltimamuda();
-		date setUltimamuda(date ultima_muda);
+		date getUltimamuda();
+		void setUltimamuda(date ultima_muda);
 };
 
 class Mamifero: public Animal{
@@ -35,6 +35,9 @@ class Mamifero: public Animal{
 	public:
 		Mamifero(string m_cor_pelo);
 		~Mamifero();
+
+		void setCorPelo(string cor_pelo);
+		string getCorPelo();
 };
 
 class Reptil: public Animal{
@@ -46,8 +49,8 @@ class Reptil: public Animal{
 		Reptil(bool m_venenoso, string m_tipo_veneno);
 		~Reptil();
 
-		void getVenenoso();
-		bool setVenenoso(bool venenoso);
+		bool getVenenoso();
+		void setVenenoso(bool venenoso);
 };
 
 class Ave: public Animal{
@@ -62,8 +65,8 @@ class Ave: public Animal{
 		void setTamanhobico();
 		double getTamanhobico(double tamanho_bico);
 
-		void setEnvergaduraasas();
-		double getEnvergaduraasas(double envergadura_asas);
+		void setEnvergaduraAsas();
+		double getEnvergaduraAsas(double envergadura_asas);
 };
 
 
