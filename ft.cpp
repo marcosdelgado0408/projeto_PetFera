@@ -23,7 +23,7 @@ int main(int argc, char** argv) {
         string expo_vet;    
         string expo_trat;
 
-        if (getline(dataBase,",") == classe){ // Comparando e copiando, case true, o 1 elemento da linha         
+        if (getline(dataBase,',') == classe){ // Comparando e copiando, case true, o 1 elemento da linha         
             getline(dataBase,expo_classe,",");
         }
         else if (getline(dataBase,",") == vet){// Comparando e copiando, case true, o 2 elemento da linha

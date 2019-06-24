@@ -8,7 +8,7 @@ class Tratador: public Funcionario{
 		int m_nivel_de_seguranca;
 	public:
 		Tratador();
-		Tratador(int m_nivel_de_seguranca);
+		Tratador(string m_nome, string m_cpf, short m_idade, string m_tipo_sanguineo, char m_fator_rh, string m_especialidade, int m_nivel_de_seguranca);
 		~Tratador();
 };
 

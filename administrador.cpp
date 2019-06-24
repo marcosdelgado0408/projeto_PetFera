@@ -14,19 +14,19 @@ int Administrador::cadastrar_animal(Animal *a){
 }
 
 //TODO
-int Administrador::cadastrar_funcionario(Funcionario *f, Veterinario *vet){ // tipo 1-> veteterinario, tipo 2-> tratador
+int Administrador::cadastrar_funcionario(Veterinario *vet){ // tipo 1-> veteterinario, tipo 2-> tratador
     int id_atual = Funcionario::id_atual_funcionario;
     Funcionario::id_atual_funcionario++;
 
-    cout << "Adicionando " << f->getNome() << " de especialidade " << f->getEspecialidade() << endl;
+    cout << "Adicionando " << vet->getNome() << " de especialidade " << vet->getEspecialidade() << endl;
     this->lista_veterinarios.insert(pair<int, Veterinario>(id_atual, *vet)); /*O controle do id_atual atraves da variavel estatica permite que adicionar seja feito em apenas uma linha de comando*/
 }
 
-int Administrador::cadastrar_funcionario(Funcionario *f, Tratador *trat){
+int Administrador::cadastrar_funcionario(Tratador *trat){
     int id_atual = Funcionario::id_atual_funcionario;
     Funcionario::id_atual_funcionario++;
 
-    cout << "Adicionando " << f->getNome() << " de especialidade " << f->getEspecialidade() << endl;
+    cout << "Adicionando " << trat->getNome() << " de especialidade " << trat->getEspecialidade() << endl;
     this->lista_tratadores.insert(pair<int, Tratador>(id_atual, *trat)); /*O controle do id_atual atraves da variavel estatica permite que adicionar seja feito em apenas uma linha de comando*/
 
 
@@ -114,7 +114,7 @@ void Administrador::mostrar_menu(){
         //colocar os dados aqui dentro
         Animal *a = new Animal(m_classe, m_nome_cientifico, m_sexo, m_tamanho, m_dieta, *v, *t, m_nome_batismo);
         cadastrar_animal(a);
-
+        free(a);
     }else if(choice == 2){
         //remover_animal();
     }else if(choice == 5){
@@ -127,10 +127,9 @@ void Administrador::mostrar_menu(){
 		char m_fator_rh;
 		string m_especialidade;
 
-        int m_nivel_de_seguranca;
+        int m_nivel_de_seguranca;/* Nivel de seguranca do tratador */
 
-        string m_crm; // crm do veterinario
-
+        string m_crm; /*crm do veterinario*/
         cout << "*** Digite os dados abaixo para cadastrar um funcionario ***" << endl;
         cout << "Tipo do funcionario (1 - veterinario, 2 - tratador)"<< endl;
         cin >> type;
@@ -154,37 +153,19 @@ void Administrador::mostrar_menu(){
         cin >> m_especialidade;
 
         if(type == 1){
-
             cout << "CRM: " << endl;
             cin >> m_crm;
-
-            Veterinario *vet = new Veterinario(m_crm);
-
-            Funcionario *f = new Funcionario(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade);
-            
-            this->cadastrar_funcionario(f,vet);
-
+            Veterinario *vet = new Veterinario(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade,m_crm);
+            cadastrar_funcionario(vet);
+            free(vet);
         }
         else if(type == 2){
-
             cout << "Nível de segurança: " << endl;
             cin >> m_nivel_de_seguranca;
             cout << endl << endl;
-
-
-            Funcionario *f = new Funcionario(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade);
-
-            Tratador *trat = new Tratador(m_nivel_de_seguranca);
-
-            this->cadastrar_funcionario(f,trat);
-
+            Tratador *trat = new Tratador(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade, m_nivel_de_seguranca);
+            cadastrar_funcionario(trat);
+            free(trat);
         }
-        
-
-
-        //Ele adiciona animal, falta diferenciar Veterinario de Tratador e adicionar ambos
-        //cadastrar_funcionario();
-
-
     }
 }
