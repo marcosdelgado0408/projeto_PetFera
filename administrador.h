@@ -22,7 +22,9 @@ class Administrador{
 		int alterar_animal(Animal *a);
 		int consultar_animal(int id);
 
-		int cadastrar_funcionario(Funcionario *f, int tipo);
+		int cadastrar_funcionario(Funcionario *f, Veterinario *vet);
+		int cadastrar_funcionario(Funcionario *f, Tratador *trat);
+
 		int remover_funcionario(Funcionario *f, int tipo);
 		int alterar_funcionario(Funcionario *f, int tipo);
 		int consultar_funcionario(int id);

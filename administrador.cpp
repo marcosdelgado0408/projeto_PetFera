@@ -14,13 +14,25 @@ int Administrador::cadastrar_animal(Animal *a){
 }
 
 //TODO
-int Administrador::cadastrar_funcionario(Funcionario *f, int tipo){
+int Administrador::cadastrar_funcionario(Funcionario *f, Veterinario *vet){ // tipo 1-> veteterinario, tipo 2-> tratador
     int id_atual = Funcionario::id_atual_funcionario;
     Funcionario::id_atual_funcionario++;
 
     cout << "Adicionando " << f->getNome() << " de especialidade " << f->getEspecialidade() << endl;
-    lista_veterinarios.insert(pair<int, Veterinario>(id_atual, *f)); /*O controle do id_atual atraves da variavel estatica permite que adicionar seja feito em apenas uma linha de comando*/
+    this->lista_veterinarios.insert(pair<int, Veterinario>(id_atual, *vet)); /*O controle do id_atual atraves da variavel estatica permite que adicionar seja feito em apenas uma linha de comando*/
 }
+
+int Administrador::cadastrar_funcionario(Funcionario *f, Tratador *trat){
+    int id_atual = Funcionario::id_atual_funcionario;
+    Funcionario::id_atual_funcionario++;
+
+    cout << "Adicionando " << f->getNome() << " de especialidade " << f->getEspecialidade() << endl;
+    this->lista_tratadores.insert(pair<int, Tratador>(id_atual, *trat)); /*O controle do id_atual atraves da variavel estatica permite que adicionar seja feito em apenas uma linha de comando*/
+
+
+}
+
+
 
 int Administrador::remover_animal(Animal *a){
 
@@ -117,7 +129,7 @@ void Administrador::mostrar_menu(){
 
         int m_nivel_de_seguranca;
 
-        string m_crm;
+        string m_crm; // crm do veterinario
 
         cout << "*** Digite os dados abaixo para cadastrar um funcionario ***" << endl;
         cout << "Tipo do funcionario (1 - veterinario, 2 - tratador)"<< endl;
@@ -142,10 +154,37 @@ void Administrador::mostrar_menu(){
         cin >> m_especialidade;
 
         if(type == 1){
-            cout << "CRM" << endl;
+
+            cout << "CRM: " << endl;
             cin >> m_crm;
+
+            Veterinario *vet = new Veterinario(m_crm);
+
+            Funcionario *f = new Funcionario(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade);
+            
+            this->cadastrar_funcionario(f,vet);
+
         }
+        else if(type == 2){
+
+            cout << "Nível de segurança: " << endl;
+            cin >> m_nivel_de_seguranca;
+            cout << endl << endl;
+
+
+            Funcionario *f = new Funcionario(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade);
+
+            Tratador *trat = new Tratador(m_nivel_de_seguranca);
+
+            this->cadastrar_funcionario(f,trat);
+
+        }
+        
+
+
         //Ele adiciona animal, falta diferenciar Veterinario de Tratador e adicionar ambos
         //cadastrar_funcionario();
+
+
     }
 }
