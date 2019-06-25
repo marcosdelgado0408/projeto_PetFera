@@ -11,6 +11,8 @@ class Veterinario: public Funcionario{
 		Veterinario();
 		Veterinario(string m_nome, string m_cpf, short m_idade, string m_tipo_sanguineo, char m_fator_rh, string m_especialidade, string m_crm);
 		~Veterinario();
+
+		string get_nome_vet();
 };
 
 #endif

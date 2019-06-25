@@ -34,7 +34,7 @@ int Administrador::remover_animal(Animal *a){
     int tam = lista_animais.size();
     if(!this->lista_animais.empty()){
         map<int, Animal>::iterator it = this->lista_animais.find(a->getId());
-        this->lista_animais.remove(it);
+        this->lista_animais.erase(it);
     }
     if(tam < lista_animais.size()){
         cout << "Este animal foi apagado com sucesso!" << endl;
@@ -183,7 +183,10 @@ void Administrador::mostrar_menu(){
             cout << "CRM: " << endl;
             cin >> m_crm;
             Veterinario *vet = new Veterinario(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade,m_crm);
-            cadastrar_funcionario(vet);
+            cout << "Nome: " << vet->getNome() << endl;
+            cout << "Idade: "<< vet->getIdade() << endl << endl;
+
+            this->cadastrar_funcionario(vet);
             free(vet);
         }
         else if(type == 2){
@@ -191,7 +194,7 @@ void Administrador::mostrar_menu(){
             cin >> m_nivel_de_seguranca;
             cout << endl << endl;
             Tratador *trat = new Tratador(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade, m_nivel_de_seguranca);
-            cadastrar_funcionario(trat);
+            this->cadastrar_funcionario(trat);
             free(trat);
         }
     }
