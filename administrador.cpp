@@ -130,6 +130,9 @@ void Administrador::mostrar_menu(){
         free(a);
         free(v);
         free(t);
+
+        cout << "ANIMAL CADASTRADO COM SUCESSO" << endl << endl;
+
     }else if(choice == 2){
         //remover_animal();
     }else if(choice == 5){
