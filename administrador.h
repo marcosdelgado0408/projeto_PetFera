@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <cstdlib>
 
 #include "animal.h"
 #include "veterinario.h"
