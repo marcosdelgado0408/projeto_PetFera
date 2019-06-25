@@ -19,7 +19,7 @@ main.o: main.cpp administrador.cpp
 				g++ -std=c++0x -c -Wall main.cpp
 	
 petfera: main.o administrador.o animal.o funcionario.o tratador.o veterinario.o
-				g++ -std=c++0x -o petfera main.o administracao.o empresa.o funcionario.o
+				g++ -std=c++0x -o petfera main.o administrador.o funcionario.o
 
 clean:
 		rm -rf *.o

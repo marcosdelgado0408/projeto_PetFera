@@ -2,6 +2,17 @@
 
 /*static*/ int Animal::id_atual_animal = 1;
 
+Animal::Animal(){
+    this->m_classe = "";
+    this->m_nome_cientifico = "";
+    this->m_sexo = 'm';
+    this->m_tamanho = 0.0;
+    this->m_dieta = "";
+    this->m_veterinario = m_veterinario;
+    this->m_tratador = m_tratador;
+    this->m_nome_batismo = "";
+}
+
 Animal::Animal(string m_classe, string m_nome_cientifico, char m_sexo, double m_tamanho, string m_dieta 
 , Veterinario m_veterinario, Tratador m_tratador, string m_nome_batismo){
     this->m_classe = m_classe;
@@ -13,6 +24,18 @@ Animal::Animal(string m_classe, string m_nome_cientifico, char m_sexo, double m_
     this->m_tratador = m_tratador;
     this->m_nome_batismo = m_nome_batismo;
 }
+
+Animal::~Animal(){
+    this->m_classe = "";
+    this->m_nome_cientifico = "";
+    this->m_sexo = 'm';
+    this->m_tamanho = 0.0;
+    this->m_dieta = "";
+    this->m_veterinario = m_veterinario;
+    this->m_tratador = m_tratador;
+    this->m_nome_batismo = "";
+}
+
 
 int Animal::getId(){
     return this->m_id;

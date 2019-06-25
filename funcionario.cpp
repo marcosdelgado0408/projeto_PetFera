@@ -2,6 +2,15 @@
 
 /*static*/ int Funcionario::id_atual_funcionario = 1; /* variável que vai armazenar incrementalmente o id de um funcionário, fazendo com que seja automatizado */
 
+Funcionario::Funcionario(){
+	this->m_nome = "";
+	this->m_cpf = "";
+	this->m_idade = 0;
+	this->m_tipo_sanguineo = "";
+	this->m_fator_rh = 'x';
+	this->m_especialidade = "";
+}
+
 Funcionario::Funcionario(string m_nome, string m_cpf, short m_idade, string m_tipo_sanguineo, char m_fator_rh, string m_especialidade){
 	this->m_nome = m_nome;
 	this->m_cpf = m_cpf;
@@ -10,6 +19,16 @@ Funcionario::Funcionario(string m_nome, string m_cpf, short m_idade, string m_ti
 	this->m_fator_rh = m_fator_rh;
 	this->m_especialidade = m_especialidade;
 }
+
+Funcionario::~Funcionario(){
+	this->m_nome = "";
+	this->m_cpf = "";
+	this->m_idade = 0;
+	this->m_tipo_sanguineo = "";
+	this->m_fator_rh = 'x';
+	this->m_especialidade = "";
+}
+
 
 string Funcionario::getNome(){
 	return this->m_nome;
