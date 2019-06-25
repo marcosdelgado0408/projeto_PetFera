@@ -88,21 +88,38 @@ void Administrador::mostrar_menu(){
         cout << "Dieta: ";
         cin >> m_dieta;
 
-        cout << "Veterinario responsavel (selecione um ID da lista): ";
-        cout << "0 - sem veterinario atrelado";
+        
         listar_funcionarios(1);
+        cout << "0 - sem veterinario atrelado";
+        
+
+        cout << "Veterinario responsavel (selecione um ID da lista): ";
         cin >> escolha_vet;
+        
         Veterinario *v;
-        map<int, Veterinario>::iterator it = Administrador::lista_veterinarios.find(escolha_vet);
-        *v = it->second;
+        map<int, Veterinario>::iterator it; 
+        
+        if(!this->lista_veterinarios.empty()){
+            this->lista_veterinarios.find(escolha_vet);
+            *v = it->second;
+        }
+        
+        //----------------------------------------------------------
+      
+        listar_funcionarios(2); 
+        cout << "0 - sem tratador atrelado";
 
         cout << "Tratador responsavel (selecione um ID da lista): ";
-        cout << "0 - sem tratador atrelado";
-        listar_funcionarios(2); 
         cin >> escolha_trat;
+
+            
         Tratador *t;
-        map<int, Tratador>::iterator it2 = Administrador::lista_tratadores.find(escolha_trat);
-        *t = it2->second;
+        map<int, Tratador>::iterator it2 ;
+
+        if(!this->lista_tratadores.empty()){
+            this->lista_tratadores.find(escolha_trat);
+            *t = it2->second;
+        }
 
         cout << "Nome de batismo: ";
         cin >> m_nome_batismo;
