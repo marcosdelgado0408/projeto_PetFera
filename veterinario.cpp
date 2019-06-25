@@ -19,3 +19,11 @@ Veterinario::Veterinario(string m_nome, string m_cpf, short m_idade, string m_ti
 Veterinario::~Veterinario(){
     this->m_crm = "";
 }
+
+string Veterinario::getCrm(){
+    return this->m_crm;
+}
+
+void Veterinario::setCrm(string crm){
+    this->m_crm = crm;
+}

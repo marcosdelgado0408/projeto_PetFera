@@ -10,6 +10,9 @@ class Tratador: public Funcionario{
 		Tratador();
 		Tratador(string m_nome, string m_cpf, short m_idade, string m_tipo_sanguineo, char m_fator_rh, string m_especialidade, int m_nivel_de_seguranca);
 		~Tratador();
+
+		int getNivelSeguranca();
+		void setNivelSeguranca(int nivel);
 };
 
 
