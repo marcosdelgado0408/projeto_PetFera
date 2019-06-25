@@ -31,7 +31,16 @@ int Administrador::cadastrar_funcionario(Tratador *trat){
 }
 
 int Administrador::remover_animal(Animal *a){
-
+    int tam = lista_animais.size();
+    if(!this->lista_animais.empty()){
+        map<int, Animal>::iterator it = this->lista_animais.find(a->getId());
+        this->lista_animais.remove(it);
+    }
+    if(tam < lista_animais.size()){
+        cout << "Este animal foi apagado com sucesso!" << endl;
+    }else{
+        cout << "Nao foi possivel remover esse animal!" << endl;
+    }
 }
 
 void Administrador::listar_funcionarios(int param){
@@ -107,7 +116,7 @@ void Administrador::mostrar_menu(){
         //----------------------------------------------------------
       
         listar_funcionarios(2); 
-        cout << "0 - sem tratador atrelado";
+        cout << "0 - sem veterinario atrelado";
 
         cout << "Tratador responsavel (selecione um ID da lista): ";
         cin >> escolha_trat;
