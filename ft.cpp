@@ -1,21 +1,31 @@
 #include <iomanip>
 #include <iostream>
 #include <fstream>
+#include <vector>
 using namespace std;
 
 int main(int argc, char** argv) {
-    ofstream ArqExt; //usuario escolhe o nome do arquivo
+    ofstream ArqExt; 
     ifstream dataBase;
     string classe, vet, trat;
     string n;
-    
-    cin >> classe;
-    cin >> vet;
-    cin >> trat;
-    cin >> n;
-    
-    
-    
+    string ca;
+    n = argv[argc];
+    for (int i = 1; i < argc; i++){
+        ca = argv[i];    
+        if(ca == "-c"){
+            classe = argv[i+1];
+        }
+        
+        if (ca == "-v"){
+            vet = argv[i+1];
+        }
+        if (ca == "-t"){
+            trat = argv[i+1];
+        }
+    }
+
+   
 
     dataBase.open ("database.csv");// Abertura dos arquivos de base
     ArqExt.open(n + ".csv", ios::app); // Abertura do arquivo de exportação
@@ -31,19 +41,23 @@ int main(int argc, char** argv) {
 
 
         //primeiro caso, todos os atributos inseridos
-        if (aux == classe){ // Comparando e copiando, case true, o 1 elemento da linha         
-            expo_classe = aux;
-            getline(dataBase,aux,',');
-            if (aux == vet){// Comparando e copiando, case true, o 2 elemento da linha
-                expo_vet = aux;
-                getline(dataBase,aux,'\n');
-                if (aux == trat){// Comparando e copiando, case true, o 3 elemento da linha
-                    expo_trat = aux;
-                    ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat << '\n'; 
+        if (classe != "" && vet != "" && trat != ""){
+            if (aux == classe){ // Comparando e copiando, case true, o 1 elemento da linha         
+                expo_classe = aux;
+                getline(dataBase,aux,',');
+                if (aux == vet){// Comparando e copiando, case true, o 2 elemento da linha
+                    expo_vet = aux;
+                    getline(dataBase,aux,'\n');
+                    if (aux == trat){// Comparando e copiando, case true, o 3 elemento da linha
+                        expo_trat = aux;
+                        ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat << '\n'; 
+                        break;
+                    }
                 }
+                
             }
-               
         }
+        //fim do primeiro caso
 
 
         //segundo caso, somente os dois primeiros inseridos
@@ -54,6 +68,7 @@ int main(int argc, char** argv) {
                 expo_vet = aux;
                 getline(dataBase,expo_trat,'\n');
                 ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat << '\n'; 
+                break;
             }
             
         }
@@ -66,6 +81,7 @@ int main(int argc, char** argv) {
             getline(dataBase,expo_vet,',');
             getline(dataBase,expo_trat,'\n');
             ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat <<'\n'; 
+            break;
         }
         //fim do terceiro caso
 
@@ -78,6 +94,7 @@ int main(int argc, char** argv) {
             if(aux == trat){
                 expo_trat = aux;
                 ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat <<'\n'; 
+                break;
             }
         }
         
@@ -94,6 +111,7 @@ int main(int argc, char** argv) {
                 if (aux == trat){
                     expo_trat = aux;
                     ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat << '\n';
+                    break;
                 }
                 
             }
@@ -106,6 +124,7 @@ int main(int argc, char** argv) {
             getline(dataBase,aux,'\n');
             expo_trat = aux;
             ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat<<'\n';
+            break;
         }
         // fim do quinto caso
 
@@ -116,12 +135,14 @@ int main(int argc, char** argv) {
             if(aux == trat){
                 expo_trat = aux;
                 ArqExt << expo_classe << ',' << expo_vet << ',' << expo_trat << '\n';
+                break;
             }
 
         }
         // fim do sexto caso
         else{
             cout << "Não foram encontrados dados no banco de dados com os registros inseridos" << endl;
+            break;
         }
     }
     
