@@ -96,7 +96,7 @@ void Administrador::mostrar_menu(){
         cout << "Veterinario responsavel (selecione um ID da lista): ";
         cin >> escolha_vet;
         
-        Veterinario *v;
+        Veterinario *v = new Veterinario();
         map<int, Veterinario>::iterator it; 
         
         if(!this->lista_veterinarios.empty()){
@@ -113,7 +113,7 @@ void Administrador::mostrar_menu(){
         cin >> escolha_trat;
 
             
-        Tratador *t;
+        Tratador *t = new Tratador();
         map<int, Tratador>::iterator it2 ;
 
         if(!this->lista_tratadores.empty()){
@@ -126,7 +126,7 @@ void Administrador::mostrar_menu(){
 
         //colocar os dados aqui dentro
         Animal *a = new Animal(m_classe, m_nome_cientifico, m_sexo, m_tamanho, m_dieta, *v, *t, m_nome_batismo);
-        cadastrar_animal(a);
+        this->cadastrar_animal(a);
         free(a);
         free(v);
         free(t);
