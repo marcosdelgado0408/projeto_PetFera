@@ -5,7 +5,7 @@
 #include <string>
 #include <map>
 
-#include "exoticos.h"
+#include "animal.h"
 #include "veterinario.h"
 #include "tratador.h"
 
@@ -13,9 +13,9 @@ using namespace std;
 
 class Administrador{
 	public:
-		static map<int, Animal> lista_animais; /* informações a serem adicionadas no arquivo texto */
-		static map<int, Veterinario> lista_veterinarios;
-		static map<int, Tratador> lista_tratadores;
+		map<int, Animal> lista_animais; /* informações a serem adicionadas no arquivo texto */
+		map<int, Veterinario> lista_veterinarios;
+		map<int, Tratador> lista_tratadores;
 
 		int cadastrar_animal(Animal *a);
 		int remover_animal(Animal *a);

@@ -28,25 +28,21 @@ int Administrador::cadastrar_funcionario(Tratador *trat){
 
     cout << "Adicionando " << trat->getNome() << " de especialidade " << trat->getEspecialidade() << endl;
     this->lista_tratadores.insert(pair<int, Tratador>(id_atual, *trat)); /*O controle do id_atual atraves da variavel estatica permite que adicionar seja feito em apenas uma linha de comando*/
-
-
 }
-
-
 
 int Administrador::remover_animal(Animal *a){
 
 }
 
-void listar_funcionarios(int param){
+void Administrador::listar_funcionarios(int param){
     if (param == 1){
         map<int, Veterinario>::iterator it;
-        for(it = Administrador::lista_veterinarios.begin(); it != Administrador::lista_veterinarios.end(); it++){
+        for(it = this->lista_veterinarios.begin(); it != this->lista_veterinarios.end(); it++){
             cout << it->first << " - " << it->second.getNome() << " - " << it->second.getEspecialidade();
         }
     }else if(param == 2){
         map<int, Tratador>::iterator it;
-        for(it = Administrador::lista_tratadores.begin(); it != Administrador::lista_tratadores.end(); it++){
+        for(it = this->lista_tratadores.begin(); it != this->lista_tratadores.end(); it++){
             cout << it->first << " - " << it->second.getNome() << " - " << it->second.getEspecialidade();
         }
     }
@@ -115,6 +111,8 @@ void Administrador::mostrar_menu(){
         Animal *a = new Animal(m_classe, m_nome_cientifico, m_sexo, m_tamanho, m_dieta, *v, *t, m_nome_batismo);
         cadastrar_animal(a);
         free(a);
+        free(v);
+        free(t);
     }else if(choice == 2){
         //remover_animal();
     }else if(choice == 5){

@@ -1,25 +1,25 @@
 all: petfera
 
-main.o: main.cpp administrador.h
-		g++ main.cpp -c
+funcionario.o: funcionario.cpp
+				g++ -std=c++0x -c -Wall funcionario.cpp
 
-administrador.o: administrador.cpp administrador.h exoticos.h veterinario.h tratador.h
-					g++ administrador.cpp -c
+veterinario.o: veterinario.cpp funcionario.cpp
+				g++ -std=c++0x -c -Wall veterinario.cpp
 
-animal.o: animal.cpp animal.h veterinario.h tratador.h
-			g++ animal.cpp -c
+tratador.o: tratador.cpp funcionario.cpp
+				g++ -std=c++0x -c -Wall tratador.cpp
 
-funcionario.o: funcionario.h
-				g++ funcionario.cpp -c
+animal.o: animal.cpp veterinario.cpp tratador.cpp
+				g++ -std=c++0x -c -Wall animal.cpp
 
-tratador.o: tratador.h funcionario.h
-				g++ tratador.cpp -c
+administrador.o: administrador.cpp animal.cpp veterinario.cpp tratador.cpp
+				g++ -std=c++0x -c -Wall administrador.cpp
 
-veterinario.o: veterinario.h funcionario.h
-				g++ veterinario.cpp -c
-
+main.o: main.cpp administrador.cpp
+				g++ -std=c++0x -c -Wall main.cpp
+	
 petfera: main.o administrador.o animal.o funcionario.o tratador.o veterinario.o
-			g++ main.o administrador.o animal.o funcionario.o tratador.o veterinario.o -o petfera
+				g++ -std=c++0x -o petfera main.o administracao.o empresa.o funcionario.o
 
 clean:
 		rm -rf *.o
