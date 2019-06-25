@@ -112,15 +112,15 @@ void Administrador::mostrar_menu(){
             Veterinario *v = new Veterinario();
             map<int, Veterinario>::iterator it; 
             
-            if(!this->lista_veterinarios.empty()){
-                this->lista_veterinarios.find(escolha_vet);
+            if(!this->lista_veterinarios.empty() && escolha_vet != 0){
+                it = this->lista_veterinarios.find(escolha_vet);
                 *v = it->second;
             }
             
             //----------------------------------------------------------
         
             this->listar_funcionarios(2); 
-            cout << "0 - sem veterinario atrelado" << endl << endl;
+            cout << "0 - sem tratador atrelado" << endl << endl;
 
             cout << "Tratador responsavel (selecione um ID da lista): ";
             cin >> escolha_trat;
@@ -129,8 +129,8 @@ void Administrador::mostrar_menu(){
             Tratador *t = new Tratador();
             map<int, Tratador>::iterator it2 ;
 
-            if(!this->lista_tratadores.empty()){
-                this->lista_tratadores.find(escolha_trat);
+            if(!this->lista_tratadores.empty() && escolha_vet != 0){
+               it2 =  this->lista_tratadores.find(escolha_trat);
                 *t = it2->second;
             }
 
@@ -204,6 +204,13 @@ void Administrador::mostrar_menu(){
         }
         else if(choice == 0){
             exit(1);
+        }
+        else if(choice == 12){
+            map <int ,Animal>::iterator it;
+            
+            for(it = this->lista_animais.begin();it!=this->lista_animais.end();it++){
+                cout << it->first << " : " << it->second.getNomecientifico() << endl;
+            }
         }
    }
    
