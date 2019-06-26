@@ -1,0 +1,43 @@
+\hypertarget{classAnfibio}{}\section{Anfibio Class Reference}
+\label{classAnfibio}\index{Anfibio@{Anfibio}}
+
+
+Inheritance diagram for Anfibio\+:
+% FIG 0
+
+
+Collaboration diagram for Anfibio\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAnfibio_acd369177ea4c558166cc9a925e0b3429}\label{classAnfibio_acd369177ea4c558166cc9a925e0b3429}} 
+{\bfseries Anfibio} (int m\+\_\+total\+\_\+de\+\_\+mudas, \hyperlink{structdata}{date} m\+\_\+ultima\+\_\+muda)
+\item 
+\mbox{\Hypertarget{classAnfibio_a2f504f0529a29edf688fb12f47d5e6e6}\label{classAnfibio_a2f504f0529a29edf688fb12f47d5e6e6}} 
+int {\bfseries get\+Totalmudas} ()
+\item 
+\mbox{\Hypertarget{classAnfibio_afbebdee53fe0bc78bb597b3489a860f4}\label{classAnfibio_afbebdee53fe0bc78bb597b3489a860f4}} 
+void {\bfseries set\+Totalmudas} (int total\+\_\+mudas)
+\item 
+\mbox{\Hypertarget{classAnfibio_a4b1f4bf7ffb9936c46523b57a1b99bb5}\label{classAnfibio_a4b1f4bf7ffb9936c46523b57a1b99bb5}} 
+\hyperlink{structdata}{date} {\bfseries get\+Ultimamuda} ()
+\item 
+\mbox{\Hypertarget{classAnfibio_aac4000bfa8af8bb6155b34527c76091c}\label{classAnfibio_aac4000bfa8af8bb6155b34527c76091c}} 
+void {\bfseries set\+Ultimamuda} (\hyperlink{structdata}{date} ultima\+\_\+muda)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classAnfibio_a994200134b0d314e3db0ac5c781bb7e7}\label{classAnfibio_a994200134b0d314e3db0ac5c781bb7e7}} 
+int {\bfseries m\+\_\+total\+\_\+de\+\_\+mudas}
+\item 
+\mbox{\Hypertarget{classAnfibio_a0cbc6ed64dc2cf979407b45053c838e9}\label{classAnfibio_a0cbc6ed64dc2cf979407b45053c838e9}} 
+\hyperlink{structdata}{date} {\bfseries m\+\_\+ultima\+\_\+muda}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+sub\+\_\+animal.\+h\end{DoxyCompactItemize}
