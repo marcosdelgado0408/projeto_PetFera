@@ -225,9 +225,9 @@ void carregar_tratadores_memoria(){
 
 void Administrador::listar_animais(){
     map<int, Animal>::iterator it;
-        for(it = this->lista_animais.begin(); it != this->lista_animais.end(); it++){
-            cout << it->first << " - " << it->second.getNomebatismo() << " - " << it->second.getClasse() << endl;
-        }
+    for(it = this->lista_animais.begin(); it != this->lista_animais.end(); it++){
+        cout << it->first << " - " << it->second.getNomebatismo() << " - " << it->second.getClasse() << endl;
+    }
 }
 
 void Administrador::mostrar_menu(){
@@ -243,8 +243,9 @@ void Administrador::mostrar_menu(){
         cout << "4 - Alterar um animal" << endl;
         cout << "5 - Cadastrar um funcionario" << endl;
         cout << "6 - Remover um funcionario" << endl;
-        cout << "7 - Consultar um funcionario" << endl;
-        cout << "8 - Alterar um funcionario" << endl;
+        cout << "7 - Consultar um funcionario" << endl; /*FUNCAO EXTRA*/
+        cout << "8 - Alterar um funcionario" << endl; /*FUNCAO EXTRA*/
+        cout << "9 - Consultar animais atrelados a determinado funcionario" << endl;
         cout << "0 - Sair" << endl;
         cin >> choice;
 
@@ -276,7 +277,7 @@ void Administrador::mostrar_menu(){
             cin >> m_dieta;
 
             //ajeitei a sequencia de exibicao aqui
-            cout << "Veterinario responsavel (selecione um ID da lista): ";
+            cout << "Veterinario responsavel (selecione um ID da lista): " << endl;
             this->listar_funcionarios(1);
             cout << "0 - sem veterinario atrelado" << endl << endl;
             cin >> escolha_vet;
@@ -297,9 +298,9 @@ void Administrador::mostrar_menu(){
             cin >> escolha_trat;
 
             Tratador *t = new Tratador();
-            map<int, Tratador>::iterator it2 ;
+            map<int, Tratador>::iterator it2;
 
-            if(!this->lista_tratadores.empty() || escolha_vet != 0){
+            if(!this->lista_tratadores.empty() || escolha_trat != 0){
                it2 =  this->lista_tratadores.find(escolha_trat);
                 *t = it2->second;
             }
@@ -331,27 +332,50 @@ void Administrador::mostrar_menu(){
                 }
             }
             
-        }else if(choice == 3){ /*CONSULTAR ANIMAIS */
-            int escolha;
+        }else if(choice == 3){ /* CONSULTAR ANIMAIS */
+            int escolha, escolha2;
             cout << "Animais cadastrados ate o momento: " << endl;
             this->listar_animais();
-            cout << "Para consultar todos os dados de um animal especifico, digite o ID desse animal: " << endl;
-            cin >> escolha;
+            cout << "Para consultar todos os dados de um animal especifico, digite 1. Para pesquisar por classe digite 2: " << endl; 
+            cin >> escolha2;
+            if(escolha2 == 1){
+                cout << "Digite o ID de um animal especifico para ver seus dados detalhados: ";
+                cin >> escolha;
+                if (!this->lista_animais.empty()){
+                    map<int, Animal>::iterator it = this->lista_animais.find(escolha);
+                    if(it != this->lista_animais.end()){
+                        cout << it->first << " - ";
+                        cout << it->second.getClasse() << " - ";
+                        cout << it->second.getNomebatismo() << " - ";
+                        cout << it->second.getNomecientifico() << " - ";
+                        cout << it->second.getSexo() << " - ";
+                        cout << it->second.getTamnho() << " - ";
+                        cout << it->second.getTratador().getNome() << " (Tratador) - ";
+                        cout << it->second.getVeterinario().getNome() << " (Veterinario) " << endl << endl;
+                    }
+                }
+            }else if(escolha2 == 2){
+                string cl;
+                cout << "Digite a classe que voce quer pesquisar: ";
+                cin >> cl;
 
-            if (!this->lista_animais.empty()){
-                map<int, Animal>::iterator it = this->lista_animais.find(escolha);
-                if(it != lista_animais.end()){
-                    cout << it->first << " - ";
-                    cout << it->second.getClasse() << " - ";
-                    cout << it->second.getNomebatismo() << " - ";
-                    cout << it->second.getNomecientifico() << " - ";
-                    cout << it->second.getSexo() << " - ";
-                    cout << it->second.getTamnho() << " - ";
-                    cout << it->second.getTratador().getNome() << " (Tratador) - ";
-                    cout << it->second.getVeterinario().getNome() << " (Veterinario) " << endl << endl;
+                if(!this->lista_animais.empty()){
+                    map<int, Animal>::iterator it;
+                    for(it = this->lista_animais.begin(); it != this->lista_animais.end(); it++){
+                        if(it->second.getClasse().compare(cl)==0){
+                            cout << it->first << " - ";
+                            cout << it->second.getClasse() << " - ";
+                            cout << it->second.getNomebatismo() << " - ";
+                            cout << it->second.getNomecientifico() << " - ";
+                            cout << it->second.getSexo() << " - ";
+                            cout << it->second.getTamnho() << " - ";
+                            cout << it->second.getTratador().getNome() << " (Tratador) - ";
+                            cout << it->second.getVeterinario().getNome() << " (Veterinario) " << endl << endl;
+                        }
+                    }
                 }
             }
-        }else if(choice == 4){
+        }else if(choice == 4){ /*Alterar animal */
             string m_classe;
             string m_nome_cientifico;
             char m_sexo;
@@ -561,7 +585,7 @@ void Administrador::mostrar_menu(){
                     }
                 }
             }
-        }else if(choice == 8){
+        }else if(choice == 8){  /*ALTERAR FUNCIONARIO */
             int type;
 
             string m_nome;  
@@ -699,9 +723,37 @@ void Administrador::mostrar_menu(){
                     }while(escolha_loop != 0);
                 }
             }
+            }
+        }else if(choice == 9){ /*CONSULTA POR FUNCIONARIO */
+            int type, escolha;
+            cout << "Digite o tipo de funcionario para a consulta (1 - veterinario, 2 - tratador: ";
+            cin >> type;
+
+            if(type == 1){
+                this->listar_funcionarios(1);
+                cout << "Selecione um id na lista para procurar os animais: ";
+                cin >> escolha;
+
+                map<int, Veterinario>::iterator it = this->lista_veterinarios.find(escolha);
+                if(it != lista_veterinarios.end()){
+                    map<int, Animal>::iterator it2;
+                    for(it2 = this->lista_animais.begin(); it2 != this->lista_animais.end(); it2++){
+                        if(it2->second.getVeterinario().getId() == escolha){
+                            cout << it2->first << " - ";
+                            cout << it2->second.getClasse() << " - ";
+                            cout << it2->second.getNomebatismo() << " - ";
+                            cout << it2->second.getNomecientifico() << " - ";
+                            cout << it2->second.getSexo() << " - ";
+                            cout << it2->second.getTamnho() << " - ";
+                            cout << it2->second.getTratador().getNome() << " (Tratador) - ";
+                            cout << it2->second.getVeterinario().getNome() << " (Veterinario) " << endl << endl;
+                        }
+                    }
+                }
+            }
         }else if(choice == 0){
             exit(1);
         }
    }
    
-}
+

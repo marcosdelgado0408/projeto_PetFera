@@ -29,6 +29,9 @@ Funcionario::~Funcionario(){
 	this->m_especialidade = "";
 }
 
+int Funcionario::getId(){
+	return this->m_id;
+}
 
 string Funcionario::getNome(){
 	return this->m_nome;

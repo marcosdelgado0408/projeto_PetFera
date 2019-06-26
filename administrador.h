@@ -36,7 +36,6 @@ class Administrador{
 		void mostrar_menu();
 
 		void jogar_conteudo_arquivo_animais(Animal *a,Veterinario *v, Tratador *t);
-		
 		void jogar_conteudo_arquivo_funcionarios(Veterinario *v); 
 		void jogar_conteudo_arquivo_funcionarios(Tratador *t);
 
