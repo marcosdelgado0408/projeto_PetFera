@@ -57,6 +57,64 @@ void Administrador::listar_funcionarios(int param){
     }
 }
 
+
+void Administrador::jogar_conteudo_arquivo_animais(Animal *a,Veterinario *v, Tratador *t){ // vai ter um funcionario atrelado ao animal
+    ofstream jogar_no_arquivo;
+
+    jogar_no_arquivo.open("animais.csv",ios::app); // modo de adicionar no arquivo
+
+    jogar_no_arquivo << a->getId() << ";" << a->getClasse() << ";" << a->getNomecientifico() << ";" << a->getSexo() << ";" << a->getTamnho();
+
+    jogar_no_arquivo << ";" << a->getDieta() << ";" << v->id_atual_funcionario << ";" << t->id_atual_funcionario << ";" << a->getNomebatismo() << endl;
+
+    jogar_no_arquivo.close();    
+
+}
+
+void Administrador::jogar_conteudo_arquivo_funcionarios(Veterinario *v){ 
+    ofstream jogar_no_arquivo;
+
+    jogar_no_arquivo.open("funcionarios.csv",ios::app); // modo de adicionar no arquivo
+
+    jogar_no_arquivo << v->id_atual_funcionario << ";" << "Veterinário" << ";" << v->getNome() << ";" << v->getCpf(); 
+    jogar_no_arquivo << ";" << v->getIdade() << ";" << v->getTipoSanguineo() << ";" << v->getFatorRh() << ";" << v->getEspecialidade();
+    jogar_no_arquivo << ";" << v->get_m_crm() << endl;
+
+    jogar_no_arquivo.close();
+
+
+}
+
+void Administrador::jogar_conteudo_arquivo_funcionarios(Tratador *t){ 
+    ofstream jogar_no_arquivo;
+
+    jogar_no_arquivo.open("funcionarios.csv",ios::app); // modo de adicionar no arquivo
+
+    jogar_no_arquivo << t->id_atual_funcionario << ";" << "Tratador" << ";" << t->getNome() << ";" << t->getCpf(); 
+    jogar_no_arquivo << ";" << t->getIdade() << ";" << t->getTipoSanguineo() << ";" << t->getFatorRh() << ";" << t->getEspecialidade();
+    jogar_no_arquivo << ";" << t->get_nivel_de_seguranca() << endl;
+
+    jogar_no_arquivo.close();
+
+
+}
+
+
+
+void carregar_animais_memoria();
+void carregar_veterinarios_memoria();
+void carregar_tratadores_memoria();
+
+
+
+
+
+
+
+
+
+
+
 void Administrador::mostrar_menu(){
     int choice = 4545;
    
@@ -75,7 +133,9 @@ void Administrador::mostrar_menu(){
         cin >> choice;
 
         int escolha_vet, escolha_trat;
-        if (choice == 1){
+        if (choice == 1){ // cadastrar animal
+
+
             string m_classe;
             string m_nome_cientifico;
             char m_sexo;
@@ -112,7 +172,7 @@ void Administrador::mostrar_menu(){
             Veterinario *v = new Veterinario();
             map<int, Veterinario>::iterator it; 
             
-            if(!this->lista_veterinarios.empty() && escolha_vet != 0){
+            if(!this->lista_veterinarios.empty() || escolha_vet != 0){
                 it = this->lista_veterinarios.find(escolha_vet);
                 *v = it->second;
             }
@@ -129,7 +189,7 @@ void Administrador::mostrar_menu(){
             Tratador *t = new Tratador();
             map<int, Tratador>::iterator it2 ;
 
-            if(!this->lista_tratadores.empty() && escolha_vet != 0){
+            if(!this->lista_tratadores.empty() || escolha_vet != 0){
                it2 =  this->lista_tratadores.find(escolha_trat);
                 *t = it2->second;
             }
@@ -140,6 +200,8 @@ void Administrador::mostrar_menu(){
             //colocar os dados aqui dentro
             Animal *a = new Animal(m_classe, m_nome_cientifico, m_sexo, m_tamanho, m_dieta, *v, *t, m_nome_batismo);
             this->cadastrar_animal(a);
+            this->jogar_conteudo_arquivo_animais(a,v,t);
+            
             free(a);
             free(v);
             free(t);
@@ -191,6 +253,7 @@ void Administrador::mostrar_menu(){
                 cout << "Idade: "<< vet->getIdade() << endl << endl;
 
                 this->cadastrar_funcionario(vet);
+                this->jogar_conteudo_arquivo_funcionarios(vet);
                 free(vet);
             }
             else if(type == 2){
@@ -199,6 +262,8 @@ void Administrador::mostrar_menu(){
                 cout << endl << endl;
                 Tratador *trat = new Tratador(m_nome, m_cpf, m_idade, m_tipo_sanguineo,m_fator_rh,m_especialidade, m_nivel_de_seguranca);
                 this->cadastrar_funcionario(trat);
+                this->jogar_conteudo_arquivo_funcionarios(trat);
+
                 free(trat);
             }
         }

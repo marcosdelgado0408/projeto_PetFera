@@ -19,3 +19,7 @@ Tratador::Tratador(string m_nome, string m_cpf, short m_idade, string m_tipo_san
 Tratador::~Tratador(){
     this->m_nivel_de_seguranca = 0;
 }
+
+int Tratador::get_nivel_de_seguranca(){
+    return this->m_nivel_de_seguranca;
+}

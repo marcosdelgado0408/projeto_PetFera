@@ -19,3 +19,8 @@ Veterinario::Veterinario(string m_nome, string m_cpf, short m_idade, string m_ti
 Veterinario::~Veterinario(){
     this->m_crm = "";
 }
+
+
+string Veterinario::get_m_crm(){
+    return this->m_crm;
+}

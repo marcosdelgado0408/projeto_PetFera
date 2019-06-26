@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <map>
 #include <cstdlib>
 
@@ -32,6 +33,16 @@ class Administrador{
 		
 		void listar_funcionarios(int param);
 		void mostrar_menu();
+
+		void jogar_conteudo_arquivo_animais(Animal *a,Veterinario *v, Tratador *t);
+		
+		void jogar_conteudo_arquivo_funcionarios(Veterinario *v); 
+		void jogar_conteudo_arquivo_funcionarios(Tratador *t);
+
+
+		void carregar_animais_memoria();
+		void carregar_veterinarios_memoria();
+		void carregar_tratadores_memoria();
 };	
 
 #endif
