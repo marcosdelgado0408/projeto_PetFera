@@ -59,7 +59,7 @@ int main(int argc, char** argv) {
 
 
         //segundo caso, somente os dois primeiros inseridos
-        if(classe!= "" && vet != "" && trat = ""){
+        if(classe!= "" && vet != "" && trat == ""){
             if (aux == classe){ //comparando e copiando
                 expo_classe = aux;
                 getline(dataBase,aux,',');
@@ -74,7 +74,7 @@ int main(int argc, char** argv) {
 
 
         //terceiro caso, somento o primeiro atributo
-        if(classe != "" && vet = "" && trat = ""){
+        if(classe != "" && vet == "" && trat == ""){
             if (aux == classe){ //comparando e copiando
                 expo_classe = aux;
                 getline(dataBase,aux,','); //copiando direto pois n tem argumento para comparar
@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
         //fim do terceiro caso
 
         //comeco do quarto caso, somente o primeiro e o terceito
-        if(classe != "" && vet = "" && trat != ""){
+        if(classe != "" && vet == "" && trat != ""){
             if (aux == classe){//comparando e copiando
                 expo_classe = aux;
                 getline(dataBase,aux,',');
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
         //fim do quarto caso
 
         //comeco do quinto caso, somente o segundo e o terceiro atributo
-        if(classe = "" && vet != "" && trat != ""){
+        if(classe == "" && vet != "" && trat != ""){
             expo_classe = aux;//copiando direto o primeiro pois n necessita comparação
             getline(dataBase,aux,',');
             if(aux == vet){ //comparando e copiando 
@@ -117,7 +117,7 @@ int main(int argc, char** argv) {
         //fim do quinto caso
 
         //comeco do sexto, somente o segundo atributo
-        if(classe = "" && vet != "" && trat = ""){
+        if(classe == "" && vet != "" && trat == ""){
             expo_classe = aux;//copiando direto o primeiro pois n necessita comparação
             getline(dataBase,aux,',');
             if(aux == vet){ //comparando e copiando
@@ -130,7 +130,7 @@ int main(int argc, char** argv) {
         // fim do quinto caso
 
         //comeco do setimo caso, somente o terceiro atributo
-        if(classe = "" && vet = "" && trat != ""){
+        if(classe == "" && vet == "" && trat != ""){
             expo_classe = aux;//copiando direto o primeiro pois n necessita comparação
             getline(dataBase,aux,',');
             expo_vet = aux;//copiando direto o primeiro pois n necessita comparação
