@@ -91,7 +91,7 @@ void Administrador::jogar_conteudo_arquivo_animais(Animal *a,Veterinario *v, Tra
 
     jogar_no_arquivo.open("animais.csv",ios::app); // modo de adicionar no arquivo
 
-    jogar_no_arquivo << a->getId() << ";" << a->getClasse() << ";" << a->getNomecientifico() << ";" << a->getSexo() << ";" << a->getTamnho();
+    jogar_no_arquivo << Animal::id_atual_animal << ";" << a->getClasse() << ";" << a->getNomecientifico() << ";" << a->getSexo() << ";" << a->getTamnho();
 
     jogar_no_arquivo << ";" << a->getDieta() << ";" << v->id_atual_funcionario << ";" << t->id_atual_funcionario << ";" << a->getNomebatismo() << endl;
 
@@ -124,14 +124,94 @@ void Administrador::jogar_conteudo_arquivo_funcionarios(Tratador *t){
 
     jogar_no_arquivo.close();
 
-
 }
 
 
 
-void carregar_animais_memoria();
-void carregar_veterinarios_memoria();
-void carregar_tratadores_memoria();
+void Administrador::carregar_animais_memoria(){
+    ifstream ler_arquivo;
+
+    string id;
+    string classe;
+    string nome_cientifico;
+    string sexo;
+    string altura;
+    string dieta;
+    string veterinario;
+    string tratador;
+    string nome_batismo;
+
+    ler_arquivo.open("animais.csv");
+    
+
+    while(ler_arquivo.good()){
+       
+        getline(ler_arquivo,id,';');
+        getline(ler_arquivo,classe,';');
+        getline(ler_arquivo,nome_cientifico,';');
+        getline(ler_arquivo,sexo,';');
+        getline(ler_arquivo,altura,';');
+        getline(ler_arquivo,dieta,';');
+        getline(ler_arquivo,veterinario,';');
+        getline(ler_arquivo,tratador,';');
+        getline(ler_arquivo,nome_batismo,'\n');
+
+        
+        int int_id = stoi(id);
+        char char_sexo = sexo[0];
+        double double_altura = stod(altura);
+        int int_vet = stoi(veterinario);
+        int int_trat = stoi(tratador);
+
+        //------------------------------------
+        Veterinario *v = new Veterinario();
+        map<int, Veterinario>::iterator it; 
+
+        if(!this->lista_veterinarios.empty() || int_vet != 0){
+            it =  this->lista_veterinarios.find(int_vet);
+            if(it!=this->lista_veterinarios.end()){
+                *v = it->second;
+            }
+        }
+        //-------------------------------------
+
+        Tratador *t = new Tratador();
+        map<int, Tratador>::iterator it2 ;
+
+        if(!this->lista_tratadores.empty() || int_trat != 0){
+            it2 =  this->lista_tratadores.find(int_trat);
+            if(it2 != this->lista_tratadores.end()){
+                *t = it2->second;
+            }
+        }
+
+        //-------------------------------------
+
+
+        Animal *a = new Animal(classe,nome_cientifico,char_sexo,double_altura, dieta, *v, *t,nome_batismo);
+        
+        this->cadastrar_animal(a);
+
+
+    }
+
+    
+
+
+
+
+    ler_arquivo.close();
+
+}
+
+
+void carregar_veterinarios_memoria(){
+
+}
+
+void carregar_tratadores_memoria(){
+
+}
 
 
 
@@ -152,6 +232,8 @@ void Administrador::listar_animais(){
 
 void Administrador::mostrar_menu(){
     int choice = 4545;
+
+    this->carregar_animais_memoria();
    
     while (choice != 0){
         cout << "*** Bem-vindo a administracao do PetFera... O que deseja fazer?" << endl;
@@ -225,7 +307,7 @@ void Administrador::mostrar_menu(){
             cout << "Nome de batismo: ";
             cin >> m_nome_batismo;
 
-            //colocar os dados aqui dentro
+            /* colocar os dados aqui dentro*/
             Animal *a = new Animal(m_classe, m_nome_cientifico, m_sexo, m_tamanho, m_dieta, *v, *t, m_nome_batismo);
             this->cadastrar_animal(a);
             this->jogar_conteudo_arquivo_animais(a,v,t);
@@ -619,12 +701,6 @@ void Administrador::mostrar_menu(){
             }
         }else if(choice == 0){
             exit(1);
-        }else if(choice == 12){
-            map <int ,Animal>::iterator it;
-            for(it = this->lista_animais.begin();it!=this->lista_animais.end();it++){
-                cout << it->first << " : " << it->second.getNomecientifico() << endl;
-            }
-        }
         }
    }
    
