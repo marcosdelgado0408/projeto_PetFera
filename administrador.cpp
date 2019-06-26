@@ -85,7 +85,6 @@ void Administrador::listar_funcionarios(int param){
     }
 }
 
-<<<<<<< HEAD
 
 void Administrador::jogar_conteudo_arquivo_animais(Animal *a,Veterinario *v, Tratador *t){ // vai ter um funcionario atrelado ao animal
     ofstream jogar_no_arquivo;
@@ -107,7 +106,7 @@ void Administrador::jogar_conteudo_arquivo_funcionarios(Veterinario *v){
 
     jogar_no_arquivo << v->id_atual_funcionario << ";" << "Veterinário" << ";" << v->getNome() << ";" << v->getCpf(); 
     jogar_no_arquivo << ";" << v->getIdade() << ";" << v->getTipoSanguineo() << ";" << v->getFatorRh() << ";" << v->getEspecialidade();
-    jogar_no_arquivo << ";" << v->get_m_crm() << endl;
+    jogar_no_arquivo << ";" << v->getCrm() << endl;
 
     jogar_no_arquivo.close();
 
@@ -121,7 +120,7 @@ void Administrador::jogar_conteudo_arquivo_funcionarios(Tratador *t){
 
     jogar_no_arquivo << t->id_atual_funcionario << ";" << "Tratador" << ";" << t->getNome() << ";" << t->getCpf(); 
     jogar_no_arquivo << ";" << t->getIdade() << ";" << t->getTipoSanguineo() << ";" << t->getFatorRh() << ";" << t->getEspecialidade();
-    jogar_no_arquivo << ";" << t->get_nivel_de_seguranca() << endl;
+    jogar_no_arquivo << ";" << t->getNivelSeguranca() << endl;
 
     jogar_no_arquivo.close();
 
@@ -144,7 +143,6 @@ void carregar_tratadores_memoria();
 
 
 
-=======
 void Administrador::listar_animais(){
     map<int, Animal>::iterator it;
         for(it = this->lista_animais.begin(); it != this->lista_animais.end(); it++){
@@ -152,7 +150,6 @@ void Administrador::listar_animais(){
         }
 }
 
->>>>>>> 86a2f884261b153ac0907e27fd37997caa9b6379
 void Administrador::mostrar_menu(){
     int choice = 4545;
    
@@ -170,13 +167,7 @@ void Administrador::mostrar_menu(){
         cin >> choice;
 
         int escolha_vet, escolha_trat;
-<<<<<<< HEAD
-        if (choice == 1){ // cadastrar animal
-
-
-=======
         if (choice == 1){ /*CADASTRAR ANIMAIS */
->>>>>>> 86a2f884261b153ac0907e27fd37997caa9b6379
             string m_classe;
             string m_nome_cientifico;
             char m_sexo;
@@ -226,13 +217,8 @@ void Administrador::mostrar_menu(){
             Tratador *t = new Tratador();
             map<int, Tratador>::iterator it2 ;
 
-<<<<<<< HEAD
             if(!this->lista_tratadores.empty() || escolha_vet != 0){
                it2 =  this->lista_tratadores.find(escolha_trat);
-=======
-            if(!this->lista_tratadores.empty() && escolha_vet != 0){
-                it2 =  this->lista_tratadores.find(escolha_trat);
->>>>>>> 86a2f884261b153ac0907e27fd37997caa9b6379
                 *t = it2->second;
             }
 

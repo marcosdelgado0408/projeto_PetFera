@@ -20,12 +20,6 @@ Veterinario::~Veterinario(){
     this->m_crm = "";
 }
 
-<<<<<<< HEAD
-
-string Veterinario::get_m_crm(){
-    return this->m_crm;
-}
-=======
 string Veterinario::getCrm(){
     return this->m_crm;
 }
@@ -33,4 +27,3 @@ string Veterinario::getCrm(){
 void Veterinario::setCrm(string crm){
     this->m_crm = crm;
 }
->>>>>>> 86a2f884261b153ac0907e27fd37997caa9b6379
