@@ -91,7 +91,7 @@ void Administrador::jogar_conteudo_arquivo_animais(Animal *a,Veterinario *v, Tra
 
     jogar_no_arquivo.open("animais.csv",ios::app); // modo de adicionar no arquivo
 
-    jogar_no_arquivo << Animal::id_atual_animal << ";" << a->getClasse() << ";" << a->getNomecientifico() << ";" << a->getSexo() << ";" << a->getTamnho();
+    jogar_no_arquivo << a->getId() << ";" << a->getClasse() << ";" << a->getNomecientifico() << ";" << a->getSexo() << ";" << a->getTamnho();
 
     jogar_no_arquivo << ";" << a->getDieta() << ";" << v->id_atual_funcionario << ";" << t->id_atual_funcionario << ";" << a->getNomebatismo() << endl;
 
@@ -124,11 +124,12 @@ void Administrador::jogar_conteudo_arquivo_funcionarios(Tratador *t){
 
     jogar_no_arquivo.close();
 
+
 }
 
 
 
-void Administrador::carregar_animais_memoria(){
+int Administrador::carregar_animais_memoria(){
     ifstream ler_arquivo;
 
     string id;
@@ -142,11 +143,15 @@ void Administrador::carregar_animais_memoria(){
     string nome_batismo;
 
     ler_arquivo.open("animais.csv");
-    
+
 
     while(ler_arquivo.good()){
        
         getline(ler_arquivo,id,';');
+        if(id == ""){
+            return -1;
+        }
+        
         getline(ler_arquivo,classe,';');
         getline(ler_arquivo,nome_cientifico,';');
         getline(ler_arquivo,sexo,';');
@@ -156,7 +161,22 @@ void Administrador::carregar_animais_memoria(){
         getline(ler_arquivo,tratador,';');
         getline(ler_arquivo,nome_batismo,'\n');
 
-        
+
+
+        cout << "id: " << id << endl;
+        cout << "classe: " << classe << endl;
+        cout << "nome_cientifico: " << nome_cientifico << endl;
+        cout << "sexo: " << sexo << endl;
+        cout << "altura: " << altura << endl;
+        cout << "dieta: " << dieta << endl;
+        cout << "veterinario: " << veterinario << endl;
+        cout << "tratador " << tratador << endl;
+        cout << "nome_batismo: " << nome_batismo << endl;
+
+        cout << endl << endl;
+
+
+
         int int_id = stoi(id);
         char char_sexo = sexo[0];
         double double_altura = stod(altura);
@@ -215,14 +235,6 @@ void carregar_tratadores_memoria(){
 
 
 
-
-
-
-
-
-
-
-
 void Administrador::listar_animais(){
     map<int, Animal>::iterator it;
     for(it = this->lista_animais.begin(); it != this->lista_animais.end(); it++){
@@ -232,9 +244,9 @@ void Administrador::listar_animais(){
 
 void Administrador::mostrar_menu(){
     int choice = 4545;
-
-    this->carregar_animais_memoria();
    
+    this->carregar_animais_memoria();
+
     while (choice != 0){
         cout << "*** Bem-vindo a administracao do PetFera... O que deseja fazer?" << endl;
         cout << "1 - Cadastrar um animal" << endl;
@@ -308,7 +320,7 @@ void Administrador::mostrar_menu(){
             cout << "Nome de batismo: ";
             cin >> m_nome_batismo;
 
-            /* colocar os dados aqui dentro*/
+            //colocar os dados aqui dentro
             Animal *a = new Animal(m_classe, m_nome_cientifico, m_sexo, m_tamanho, m_dieta, *v, *t, m_nome_batismo);
             this->cadastrar_animal(a);
             this->jogar_conteudo_arquivo_animais(a,v,t);
@@ -753,6 +765,12 @@ void Administrador::mostrar_menu(){
             }
         }else if(choice == 0){
             exit(1);
+        }else if(choice == 12){
+            map <int ,Animal>::iterator it;
+            for(it = this->lista_animais.begin();it!=this->lista_animais.end();it++){
+                cout << it->first << " : " << it->second.getNomecientifico() << endl;
+            }
+        }
         }
    }
    

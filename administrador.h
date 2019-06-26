@@ -6,7 +6,7 @@
 #include <fstream>
 #include <map>
 #include <cstdlib>
-#include <cstring>
+
 #include "animal.h"
 #include "veterinario.h"
 #include "tratador.h"
@@ -40,7 +40,7 @@ class Administrador{
 		void jogar_conteudo_arquivo_funcionarios(Tratador *t);
 
 
-		void carregar_animais_memoria();
+		int carregar_animais_memoria();
 		void carregar_veterinarios_memoria();
 		void carregar_tratadores_memoria();
 };	
